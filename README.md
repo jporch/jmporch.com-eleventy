@@ -21,7 +21,7 @@ The generated site is in `_site/`.
 
 ## GitHub Pages
 
-The GitHub Actions workflow in `.github/workflows/pages.yml` builds the site and publishes `_site/` to GitHub Pages whenever a commit is pushed to `master`. Enable **GitHub Actions** as the Pages build and deployment source in the repository's **Settings → Pages**. No custom domain is configured by this project yet.
+The GitHub Actions workflow in `.github/workflows/pages.yml` builds the site and publishes `_site/` to GitHub Pages whenever a commit is pushed to `main`. Enable **GitHub Actions** as the Pages build and deployment source in the repository's **Settings → Pages**. No custom domain is configured by this project yet.
 
 ## Editing content
 
