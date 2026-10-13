@@ -293,8 +293,8 @@ a:visited {
   .sidebar {
     position: fixed;
     top: 0;
-    right: 12px;
-    left: 12px;
+    right: 0;
+    left: 0;
     z-index: 10;
     background-color: #f8f8f8;
   }
