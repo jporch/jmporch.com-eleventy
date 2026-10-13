@@ -3,32 +3,40 @@ layout: layouts/base.njk
 permalink: index.html
 ---
 <a class="skip-link" href="#content">Skip to content</a>
-<header class="site-header">
-  <a class="site-name" href="/">{{ site.name }}</a>
-  <nav aria-label="Main navigation">
-    <ul>
-      {% for section in collections.sections %}
-        {% if section.data.nav %}<li><a href="#{{ section.data.id }}">{{ section.data.title }}</a></li>{% endif %}
-      {% endfor %}
-    </ul>
-  </nav>
-</header>
-<main id="content">
-  <aside class="link-groups" aria-label="Contact and profiles">
-    <ul>
-      {% if site.email %}<li><a href="mailto:{{ site.email }}">Email</a></li>{% endif %}
-      {% for link in site.links %}{% if link.label == "LinkedIn" or link.label == "Twitter" %}<li><a href="{{ link.url }}">{{ link.label }}</a></li>{% endif %}{% endfor %}
-    </ul>
-    <ul>
-      {% for link in site.links %}{% if link.label == "Resume" or link.label == "GitHub" %}<li><a href="{{ link.url }}">{{ link.label }}</a></li>{% endif %}{% endfor %}
-    </ul>
+<main id="content" class="site-shell">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <a class="site-name" href="./">{{ site.name }}</a>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="sidebar-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="sidebar-nav" id="sidebar-nav" aria-label="Main navigation">
+      <ul class="sidebar-element sidebar-buttons">
+        {% for section in collections.sections %}
+          {% if section.data.nav %}<li><a data-panel-link href="#{{ section.data.id }}"{% if loop.first %} aria-current="page"{% endif %}>{{ section.data.title }}</a></li>{% endif %}
+        {% endfor %}
+      </ul>
+      <hr>
+      <ul class="sidebar-element sidebar-contact" aria-label="Contact and profiles">
+        {% if site.email %}<li><a href="mailto:{{ site.email }}">Email</a></li>{% endif %}
+        {% for link in site.links %}{% if link.label == "LinkedIn" or link.label == "Twitter" %}<li><a href="{{ link.url }}">{{ link.label }}</a></li>{% endif %}{% endfor %}
+      </ul>
+      <hr>
+      <ul class="sidebar-element sidebar-resume" aria-label="Other links">
+        {% for link in site.links %}{% if link.label == "Resume" or link.label == "GitHub" %}<li><a href="{{ link.url }}">{{ link.label }}</a></li>{% endif %}{% endfor %}
+      </ul>
+    </nav>
   </aside>
-  {% for section in collections.sections %}
-    <section id="{{ section.data.id }}" aria-labelledby="heading-{{ section.data.id }}">
-      <h1 id="heading-{{ section.data.id }}">{{ section.data.title }}{% if section.data.titleSuffix %} {{ section.data.titleSuffix | safe }}{% endif %}</h1>
-      {{ section.templateContent | safe }}
-    </section>
-  {% endfor %}
+  <div class="content-panels">
+    {% for section in collections.sections %}
+      <section class="content-panel" id="{{ section.data.id }}" data-content-panel aria-labelledby="heading-{{ section.data.id }}"{% if not loop.first %} hidden{% endif %}>
+        <h1 id="heading-{{ section.data.id }}">{{ section.data.title }}{% if section.data.titleSuffix %} {{ section.data.titleSuffix | safe }}{% endif %}</h1>
+        {% if section.data.id == "about" %}<img class="headshot" src="assets/Jesse_Porch_240x240.jpg" alt="Headshot of Jesse Porch">{% endif %}
+        {{ section.templateContent | safe }}
+      </section>
+    {% endfor %}
+  </div>
 </main>
 <footer>
   <p>This site by Jesse M. Porch. Valid <a href="https://validator.w3.org/">HTML</a> and <a href="https://jigsaw.w3.org/css-validator/">CSS</a>.</p>
