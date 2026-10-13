@@ -280,9 +280,8 @@ a:visited {
     display: block;
     max-height: 0;
     overflow: hidden;
-    opacity: 0;
     visibility: hidden;
-    transition: max-height .5s ease, opacity .5s ease, visibility 0s linear .5s;
+    transition: max-height .5s ease, visibility 0s linear .5s;
   }
   .js-enabled .sidebar-nav.is-open {
     position: fixed;
@@ -292,13 +291,11 @@ a:visited {
     left: 0;
     z-index: 20;
     max-height: calc(100vh - var(--mobile-navbar-height));
-    padding: 0 1rem 1rem;
     overflow-y: auto;
     background-color: #f8f8f8;
     border-bottom: 2px solid #e6e6e6;
-    opacity: 1;
     visibility: visible;
-    transition: max-height .5s ease, opacity .5s ease, visibility 0s;
+    transition: max-height .5s ease, visibility 0s;
   }
   .sidebar {
     position: fixed;
