@@ -18,14 +18,16 @@ a:hover, a:focus { color: #17394d; }
   display: grid;
   grid-template-columns: minmax(14rem, 18%) minmax(0, 1fr);
   gap: 1%;
-  width: 76%;
-  min-height: calc(100vh - 4rem);
-  margin: .5rem auto 0;
+  width: 68%;
+  max-width: 80rem;
+  height: 66vh;
+  min-height: 34rem;
+  margin: 15vh auto 0;
 }
 
 .sidebar {
   align-self: start;
-  min-height: calc(100vh - 4rem);
+  min-height: 0;
   margin-right: .25rem;
   padding: .5rem 1rem;
   color: #333;
@@ -46,8 +48,8 @@ a:hover, a:focus { color: #17394d; }
 
 .content-panels { min-width: 0; }
 .content-panel {
-  height: calc(100vh - 4.5rem);
-  min-height: 28rem;
+  height: 100%;
+  min-height: 0;
   overflow: auto;
   padding: 1rem;
   background: #eee;
@@ -68,7 +70,7 @@ footer { padding: .5rem 0; text-align: center; font-size: .95rem; }
 footer p { margin: .25rem 0; }
 
 @media (max-width: 52rem) {
-  .site-shell { display: block; width: 100%; min-height: 0; }
+  .site-shell { display: block; width: 100%; height: auto; min-height: 0; margin: .5rem auto 0; }
   .sidebar { min-height: 0; margin: 0 0 .75rem; padding: .5rem 1rem; }
   .site-name { font-size: 1.8rem; }
   .nav-toggle {
