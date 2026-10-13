@@ -1,4 +1,6 @@
 export default function (eleventyConfig) {
+  eleventyConfig.addGlobalData("buildYear", new Date().getFullYear());
+
   eleventyConfig.addCollection("sections", (collectionApi) =>
     collectionApi
       .getFilteredByGlob("src/sections/*.md")
