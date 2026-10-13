@@ -1,0 +1,19 @@
+:root { color-scheme: light; font: 100%/1.6 Georgia, "Times New Roman", serif; color: #292929; background: #fff; }
+* { box-sizing: border-box; }
+body { max-width: 58rem; margin: 0 auto; padding: 1.5rem; }
+a { color: #315d75; }
+a:hover, a:focus { color: #17394d; }
+.skip-link { position: absolute; left: -9999px; }
+.skip-link:focus { left: 1rem; top: 1rem; padding: .5rem; background: white; }
+.site-header { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; border-bottom: 1px solid #bbb; padding-bottom: 1rem; }
+.site-name { font-size: 1.5rem; font-weight: bold; text-decoration: none; color: inherit; }
+nav ul, .link-groups ul { display: flex; flex-wrap: wrap; gap: .5rem 1rem; list-style: none; margin: 0; padding: 0; }
+.link-groups { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid #bbb; }
+section { padding: 1.5rem 0; border-bottom: 1px solid #ddd; scroll-margin-top: 1rem; }
+h1 { font-size: 1.65rem; margin: 0 0 1rem; }
+h2 { font-size: 1.2rem; margin: 1.5rem 0 .25rem; }
+h3 { font-size: 1rem; margin: 1rem 0 .25rem; }
+p { margin: .5rem 0 1rem; }
+li { margin: .25rem 0; }
+footer { padding: 1.5rem 0; font-size: .9rem; }
+@media (max-width: 38rem) { body { padding: 1rem; } .site-header { display: block; } nav { margin-top: .75rem; } }
