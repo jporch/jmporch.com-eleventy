@@ -3,6 +3,7 @@ title: Education
 id: education
 order: 3
 nav: true
+fade: true
 permalink: false
 ---
 

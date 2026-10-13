@@ -30,7 +30,7 @@ permalink: index.html
   </div>
   <div id="content" class="content">
     {% for section in collections.sections %}
-      <section class="content-panel" id="{{ section.data.id }}" data-content-panel aria-labelledby="heading-{{ section.data.id }}"{% if not loop.first %} hidden{% endif %}>
+      <section class="content-panel" id="{{ section.data.id }}" data-content-panel{% if section.data.fade %} data-fade{% endif %} aria-labelledby="heading-{{ section.data.id }}"{% if not loop.first %} hidden{% endif %}>
         <h1 class="major-heading" id="heading-{{ section.data.id }}">{{ section.data.title }}{% if section.data.titleSuffix %} {{ section.data.titleSuffix | safe }}{% endif %}</h1>
         <div class="no-scroll">
           <div class="viewport"{% if section.data.id == "about" %} id="about-text"{% endif %}>

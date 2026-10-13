@@ -3,6 +3,7 @@ title: About Me
 id: about
 order: 1
 nav: true
+fade: false
 permalink: false
 ---
 

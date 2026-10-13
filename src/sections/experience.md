@@ -3,6 +3,7 @@ title: Work Experience
 id: experience
 order: 2
 nav: true
+fade: true
 permalink: false
 ---
 
