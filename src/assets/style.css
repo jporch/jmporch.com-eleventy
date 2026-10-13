@@ -291,8 +291,10 @@ a:visited {
     transition: max-height .5s ease, opacity .5s ease, visibility 0s;
   }
   .sidebar {
-    position: sticky;
+    position: fixed;
     top: 0;
+    right: 12px;
+    left: 12px;
     z-index: 10;
     background-color: #f8f8f8;
   }
@@ -306,10 +308,16 @@ a:visited {
   }
   .content-panel .major-heading {
     position: sticky;
-    top: var(--mobile-navbar-height);
+    top: calc(var(--mobile-navbar-height) + .25rem);
     z-index: 5;
-    padding: .3em 0;
+    box-sizing: border-box;
+    width: auto;
+    margin: .3em .3em .75em;
+    padding: .3em .5em;
     background-color: #eee;
+  }
+  .content {
+    padding-top: var(--mobile-navbar-height);
   }
 }
 
