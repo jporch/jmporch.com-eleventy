@@ -308,7 +308,7 @@ a:visited {
   }
   .content-panel .major-heading {
     position: sticky;
-    top: calc(var(--mobile-navbar-height) + .25rem);
+    top: calc(var(--mobile-navbar-height) + 2px);
     z-index: 5;
     box-sizing: border-box;
     width: auto;
