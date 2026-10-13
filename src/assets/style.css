@@ -296,11 +296,30 @@ a:visited {
     flex: 1 1 auto;
     min-height: 0;
   }
-  .content-panel[data-fade] .viewport {
+  .content-panel[data-fade] .no-scroll {
+    position: relative;
+  }
+  .content-panel[data-fade] .no-scroll::before,
+  .content-panel[data-fade] .no-scroll::after {
+    position: absolute;
+    z-index: 1;
+    right: 1rem;
+    left: 0;
+    height: 1.2rem;
+    content: "";
+    pointer-events: none;
+  }
+  .content-panel[data-fade] .no-scroll::before {
+    top: 0;
+    background: linear-gradient(to bottom, #eee, transparent);
+  }
+  .content-panel[data-fade] .no-scroll::after {
+    bottom: 0;
+    background: linear-gradient(to top, #eee, transparent);
+  }
+  .content-panel .viewport {
     height: 100%;
     max-height: none;
     overflow: auto;
-    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 1.2rem, #000 calc(100% - 1.2rem), transparent);
-    mask-image: linear-gradient(to bottom, transparent, #000 1.2rem, #000 calc(100% - 1.2rem), transparent);
   }
 }
