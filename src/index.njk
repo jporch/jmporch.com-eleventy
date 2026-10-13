@@ -1,0 +1,36 @@
+---
+layout: layouts/base.njk
+permalink: index.html
+---
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="site-header">
+  <a class="site-name" href="/">{{ site.name }}</a>
+  <nav aria-label="Main navigation">
+    <ul>
+      {% for section in collections.sections %}
+        {% if section.data.nav %}<li><a href="#{{ section.data.id }}">{{ section.data.title }}</a></li>{% endif %}
+      {% endfor %}
+    </ul>
+  </nav>
+</header>
+<main id="content">
+  <aside class="link-groups" aria-label="Contact and profiles">
+    <ul>
+      {% if site.email %}<li><a href="mailto:{{ site.email }}">Email</a></li>{% endif %}
+      {% for link in site.links %}{% if link.label == "LinkedIn" or link.label == "Twitter" %}<li><a href="{{ link.url }}">{{ link.label }}</a></li>{% endif %}{% endfor %}
+    </ul>
+    <ul>
+      {% for link in site.links %}{% if link.label == "Resume" or link.label == "GitHub" %}<li><a href="{{ link.url }}">{{ link.label }}</a></li>{% endif %}{% endfor %}
+    </ul>
+  </aside>
+  {% for section in collections.sections %}
+    <section id="{{ section.data.id }}" aria-labelledby="heading-{{ section.data.id }}">
+      <h1 id="heading-{{ section.data.id }}">{{ section.data.title }}{% if section.data.titleSuffix %} {{ section.data.titleSuffix | safe }}{% endif %}</h1>
+      {{ section.templateContent | safe }}
+    </section>
+  {% endfor %}
+</main>
+<footer>
+  <p>This site by Jesse M. Porch. Valid <a href="https://validator.w3.org/">HTML</a> and <a href="https://jigsaw.w3.org/css-validator/">CSS</a>.</p>
+  <p>Photo copyright <a href="https://www.karenadixon.com/">Karena Dixon</a>. {{ site.copyright }}</p>
+</footer>
