@@ -273,6 +273,9 @@ a:visited {
   display: none;
 }
 @media screen and (max-width: 640px) {
+  :root {
+    --mobile-navbar-height: 3.5rem;
+  }
   .js-enabled .sidebar-nav {
     display: block;
     max-height: 0;
@@ -286,6 +289,27 @@ a:visited {
     opacity: 1;
     visibility: visible;
     transition: max-height .5s ease, opacity .5s ease, visibility 0s;
+  }
+  .sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #f8f8f8;
+  }
+  .sidebar-header {
+    height: calc(var(--mobile-navbar-height) - 4px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+  }
+  .content-panel .major-heading {
+    position: sticky;
+    top: var(--mobile-navbar-height);
+    z-index: 5;
+    padding: .3em 0;
+    background-color: #eee;
   }
 }
 
