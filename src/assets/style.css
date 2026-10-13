@@ -308,13 +308,17 @@ a:visited {
   }
   .content-panel .major-heading {
     position: sticky;
-    top: calc(var(--mobile-navbar-height) + 2px);
+    top: var(--mobile-navbar-height);
     z-index: 5;
     box-sizing: border-box;
     width: auto;
     margin: 0 0 .75em;
+    border-top: 2px solid #111;
     padding: .6em 1em;
     background-color: #eee;
+  }
+  .content-panel {
+    border-top-width: 0;
   }
   .content {
     padding-top: var(--mobile-navbar-height);
