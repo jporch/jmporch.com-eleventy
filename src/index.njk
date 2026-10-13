@@ -2,13 +2,13 @@
 layout: layouts/base.njk
 permalink: index.html
 ---
-<a class="skip-link" href="#content">Skip to content</a>
-<main id="content" class="site-shell">
-  <aside class="sidebar">
+<main>
+  <div id="skip-nav"><a href="#content">Skip to content</a></div>
+  <div class="sidebar" role="navigation">
     <div class="sidebar-header">
       <a class="site-name" href="./">{{ site.name }}</a>
       <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="sidebar-nav">
-        <span></span><span></span><span></span>
+        <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
       </button>
     </div>
     <nav class="sidebar-nav" id="sidebar-nav" aria-label="Main navigation">
@@ -17,28 +17,32 @@ permalink: index.html
           {% if section.data.nav %}<li><a data-panel-link href="#{{ section.data.id }}"{% if loop.first %} aria-current="page"{% endif %}>{{ section.data.title }}</a></li>{% endif %}
         {% endfor %}
       </ul>
-      <hr>
+      <hr class="sidebar-hr">
       <ul class="sidebar-element sidebar-contact" aria-label="Contact and profiles">
         {% if site.email %}<li><a href="mailto:{{ site.email }}">Email</a></li>{% endif %}
         {% for link in site.links %}{% if link.label == "LinkedIn" or link.label == "Twitter" %}<li><a href="{{ link.url }}">{{ link.label }}</a></li>{% endif %}{% endfor %}
       </ul>
-      <hr>
+      <hr class="sidebar-hr">
       <ul class="sidebar-element sidebar-resume" aria-label="Other links">
         {% for link in site.links %}{% if link.label == "Resume" or link.label == "GitHub" %}<li><a href="{{ link.url }}">{{ link.label }}</a></li>{% endif %}{% endfor %}
       </ul>
     </nav>
-  </aside>
-  <div class="content-panels">
+  </div>
+  <div id="content" class="content">
     {% for section in collections.sections %}
       <section class="content-panel" id="{{ section.data.id }}" data-content-panel aria-labelledby="heading-{{ section.data.id }}"{% if not loop.first %} hidden{% endif %}>
-        <h1 id="heading-{{ section.data.id }}">{{ section.data.title }}{% if section.data.titleSuffix %} {{ section.data.titleSuffix | safe }}{% endif %}</h1>
-        {% if section.data.id == "about" %}<img class="headshot" src="assets/Jesse_Porch_240x240.jpg" alt="Headshot of Jesse Porch">{% endif %}
-        {{ section.templateContent | safe }}
+        <h1 class="major-heading" id="heading-{{ section.data.id }}">{{ section.data.title }}{% if section.data.titleSuffix %} {{ section.data.titleSuffix | safe }}{% endif %}</h1>
+        <div class="no-scroll">
+          <div class="viewport"{% if section.data.id == "about" %} id="about-text"{% endif %}>
+            {% if section.data.id == "about" %}<img class="headshot" src="assets/Jesse_Porch_240x240.jpg" alt="Headshot of Jesse Porch">{% endif %}
+            {{ section.templateContent | safe }}
+          </div>
+        </div>
       </section>
     {% endfor %}
   </div>
 </main>
-<footer>
+<footer class="copyright-notice">
   <p>This site by Jesse M. Porch. Valid <a href="https://validator.w3.org/">HTML</a> and <a href="https://jigsaw.w3.org/css-validator/">CSS</a>.</p>
   <p>Photo copyright <a href="https://www.karenadixon.com/">Karena Dixon</a>. All other content copyright Jesse M. Porch, {{ buildYear }}.</p>
 </footer>
