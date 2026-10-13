@@ -312,8 +312,8 @@ a:visited {
     z-index: 5;
     box-sizing: border-box;
     width: auto;
-    margin: .3em .3em .75em;
-    padding: .3em .5em;
+    margin: 0 0 .75em;
+    padding: .6em 1em;
     background-color: #eee;
   }
   .content {
