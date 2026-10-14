@@ -143,11 +143,12 @@ a:visited {
   background-image: url(content/plus_icon.png);
 }
 .collapse-body {
+  display: flow-root;
 }
 
 .collapse-body > * {
   display: block;
-  margin-left: .5em;
+  margin: 0 0 0 .5em;
   padding-left: .5em;
   border-left: 2px solid rgb(210, 210, 210);
   padding-top: .75em;

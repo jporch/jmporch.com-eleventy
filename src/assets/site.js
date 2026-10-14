@@ -28,6 +28,7 @@ document.querySelectorAll(".collapse").forEach((collapse) => {
     collapseAnimations.set(body, animation);
     animation.onfinish = () => {
       if (collapseAnimations.get(body) !== animation) return;
+      body.style.height = `${targetHeight}px`;
       body.hidden = !willExpand;
       body.style.removeProperty("height");
       body.style.removeProperty("overflow");
