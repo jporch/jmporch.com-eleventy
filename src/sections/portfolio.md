@@ -8,7 +8,7 @@ permalink: false
 titleSuffix: '(<a href="/feed.xml">RSS</a>)'
 ---
 
-### Games Writing
+## Games Writing
 
 - [Playing For Real: Decks to Dust — Haywire Magazine](https://www.haywiremag.com/columns/playing-for-real-decks-to-dust/)
 - [Playing For Real: Sweatin' Pixels — Haywire Magazine](https://www.haywiremag.com/columns/playing-for-real-sweatin-pixels/)
@@ -27,18 +27,18 @@ titleSuffix: '(<a href="/feed.xml">RSS</a>)'
 - [Playing For Real: Let There Be Play — Haywire Magazine](https://www.haywiremag.com/columns/playing-for-real-let-there-be-play/)
 - [Book Review: Beyond Choices — First Person Scholar](https://www.firstpersonscholar.com/a-review-of-miguel-sicarts-beyond-choices/)
 
-### Other Writing
+## Other Writing
 
 - [Sheathing the Sword: Akira Kurosawa and the Virtue of Meekness — Christ and Pop Culture](https://christandpopculture.com/sheathing-sword-akira-kurosawa-virtue-meekness/)
 - [Filled, Not Emptied — Trinity Fellows Academy Week 31](https://trinityfellowsacademy.org/2016/03/28/filled-not-emptied-week-31/)
 - [Light in the Darkness — Trinity Fellows Academy Weeks 16 and 17](https://trinityfellowsacademy.org/2015/12/24/light-in-the-darkness-weeks-16-17/)
 - [Strengths and Silence — Trinity Fellows Academy Week 3](https://trinityfellowsacademy.org/2015/09/14/finding-peace-and-discovering-strengths-week-3/)
 
-### Research Publications
+## Research Publications
 
 - [Integer Ray Tracing — Journal of Graphics, GPU, and Game Tools, vol. 14, no. 4, 2009](https://www.cs.unc.edu/~jheinly/publications/jgt2009-heinly.pdf)
 - [Toward Stream Filtered Ray Tracing on a DSP — ACM SIGGRAPH/Eurographics High Performance Graphics poster, June 2010](https://www.rtvtk.org/~cgribble/research/papers/bensema10toward_poster.pdf)
 
-### Software Projects
+## Software Projects
 
 - [Tangere Integer Ray Tracer](https://www.rtvtk.org/~cgribble/research/tangere/)
