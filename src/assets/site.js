@@ -142,4 +142,20 @@ navToggle?.addEventListener("click", () => {
 window.addEventListener("popstate", () => showPanelFromLocation(true));
 window.addEventListener("hashchange", () => showPanelFromLocation(true));
 showPanelFromLocation();
-document.documentElement.classList.remove("panels-pending");
+const initialPanel = visiblePanel;
+if (initialPanel && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  initialPanel.style.opacity = "0";
+  requestAnimationFrame(() => {
+    document.documentElement.classList.remove("panels-pending");
+    panelAnimation = initialPanel.animate(
+      [{ opacity: 0 }, { opacity: 1 }],
+      { duration: 180, easing: "ease-in-out" }
+    );
+    panelAnimation.onfinish = () => {
+      initialPanel.style.removeProperty("opacity");
+      panelAnimation = undefined;
+    };
+  });
+} else {
+  document.documentElement.classList.remove("panels-pending");
+}
