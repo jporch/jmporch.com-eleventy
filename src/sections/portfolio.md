@@ -5,7 +5,6 @@ order: 4
 nav: true
 fade: true
 permalink: false
-titleSuffix: '(<a href="/feed.xml">RSS</a>)'
 ---
 
 ## Games Writing
