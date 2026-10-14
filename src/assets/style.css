@@ -309,6 +309,9 @@ a:visited {
 .content-panel[hidden] {
   display: none;
 }
+.panels-pending .content-panel {
+  visibility: hidden;
+}
 @media screen and (max-width: 640px) {
   :root {
     --mobile-navbar-height: 3.5rem;

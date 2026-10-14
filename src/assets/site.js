@@ -101,3 +101,4 @@ navToggle?.addEventListener("click", () => {
 window.addEventListener("popstate", showPanelFromLocation);
 window.addEventListener("hashchange", showPanelFromLocation);
 showPanelFromLocation();
+document.documentElement.classList.remove("panels-pending");
