@@ -52,6 +52,14 @@ a:visited {
   padding: .25em .5em;
   margin: .5em .3em;
 }
+.sidebar-buttons>li {
+  padding: 0;
+}
+.sidebar-buttons>li>a {
+  display: block;
+  padding: .25em .5em;
+  border-radius: 4px;
+}
 .sidebar-buttons>li:hover {
   background-color: rgb(220,220,220);
   transition: background 250ms ease-out;
