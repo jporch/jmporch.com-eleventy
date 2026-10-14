@@ -385,8 +385,14 @@ a:visited {
     right: 1rem;
     left: 0;
     height: 1.2rem;
+    opacity: 0;
     content: "";
     pointer-events: none;
+    transition: opacity .15s ease;
+  }
+  .content-panel[data-fade].has-scroll-offset .no-scroll::before,
+  .content-panel[data-fade].has-scroll-offset.has-content-below .no-scroll::after {
+    opacity: 1;
   }
   .content-panel[data-fade] .no-scroll::before {
     top: 0;

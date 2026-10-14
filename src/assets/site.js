@@ -4,6 +4,22 @@ const nav = document.querySelector("#sidebar-nav");
 const navToggle = document.querySelector(".nav-toggle");
 document.documentElement.classList.add("js-enabled");
 
+function updateScrollFade(panel) {
+  if (!panel?.hasAttribute("data-fade")) return;
+  const viewport = panel.querySelector(".viewport");
+  if (!viewport) return;
+  const hasScrolled = viewport.scrollTop > 0;
+  const hasMoreBelow = viewport.scrollTop + viewport.clientHeight < viewport.scrollHeight - 1;
+  panel.classList.toggle("has-scroll-offset", hasScrolled);
+  panel.classList.toggle("has-content-below", hasMoreBelow);
+}
+
+document.querySelectorAll(".content-panel[data-fade] .viewport").forEach((viewport) => {
+  const panel = viewport.closest(".content-panel");
+  viewport.addEventListener("scroll", () => updateScrollFade(panel), { passive: true });
+  updateScrollFade(panel);
+});
+
 const collapseAnimations = new WeakMap();
 document.querySelectorAll(".collapse").forEach((collapse) => {
   const button = collapse.querySelector(".collapse-toggle");
@@ -33,6 +49,7 @@ document.querySelectorAll(".collapse").forEach((collapse) => {
       body.style.removeProperty("height");
       body.style.removeProperty("overflow");
       collapseAnimations.delete(body);
+      updateScrollFade(collapse.closest(".content-panel"));
     };
   });
 });
@@ -49,6 +66,9 @@ function showPanel(id) {
     else link.removeAttribute("aria-current");
   });
   activePanel.scrollTop = 0;
+  const viewport = activePanel.querySelector(".viewport");
+  if (viewport) viewport.scrollTop = 0;
+  requestAnimationFrame(() => updateScrollFade(activePanel));
 }
 
 function showPanelFromLocation() {
