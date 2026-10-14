@@ -4,13 +4,35 @@ const nav = document.querySelector("#sidebar-nav");
 const navToggle = document.querySelector(".nav-toggle");
 document.documentElement.classList.add("js-enabled");
 
+const collapseAnimations = new WeakMap();
 document.querySelectorAll(".collapse").forEach((collapse) => {
   const button = collapse.querySelector(".collapse-toggle");
   const body = collapse.querySelector(".collapse-body");
   button?.addEventListener("click", () => {
     const expanded = button.getAttribute("aria-expanded") === "true";
-    button.setAttribute("aria-expanded", String(!expanded));
-    body.hidden = expanded;
+    const willExpand = !expanded;
+    const currentHeight = body.hidden ? 0 : body.getBoundingClientRect().height;
+    collapseAnimations.get(body)?.cancel();
+    button.setAttribute("aria-expanded", String(willExpand));
+    body.hidden = false;
+    body.setAttribute("aria-hidden", String(!willExpand));
+    body.style.height = `${currentHeight}px`;
+    body.style.overflow = "hidden";
+
+    const targetHeight = willExpand ? body.scrollHeight : 0;
+    const duration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 400;
+    const animation = body.animate(
+      [{ height: `${currentHeight}px` }, { height: `${targetHeight}px` }],
+      { duration, easing: "ease-in-out" }
+    );
+    collapseAnimations.set(body, animation);
+    animation.onfinish = () => {
+      if (collapseAnimations.get(body) !== animation) return;
+      body.hidden = !willExpand;
+      body.style.removeProperty("height");
+      body.style.removeProperty("overflow");
+      collapseAnimations.delete(body);
+    };
   });
 });
 
