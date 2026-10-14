@@ -2,6 +2,9 @@ const panels = [...document.querySelectorAll("[data-content-panel]")];
 const panelLinks = [...document.querySelectorAll("[data-panel-link]")];
 const nav = document.querySelector("#sidebar-nav");
 const navToggle = document.querySelector(".nav-toggle");
+let visiblePanel = panels.find((panel) => !panel.hidden) ?? panels[0];
+let panelAnimation;
+let panelChange = 0;
 document.documentElement.classList.add("js-enabled");
 
 function updateScrollFade(panel) {
@@ -54,25 +57,63 @@ document.querySelectorAll(".collapse").forEach((collapse) => {
   });
 });
 
-function showPanel(id) {
+function showPanel(id, animate = false) {
   const activePanel = panels.find((panel) => panel.id === id) ?? panels[0];
   if (!activePanel) return;
+  const change = ++panelChange;
 
-  panels.forEach((panel) => {
-    panel.hidden = panel !== activePanel;
-  });
   panelLinks.forEach((link) => {
     if (link.hash === `#${activePanel.id}`) link.setAttribute("aria-current", "page");
     else link.removeAttribute("aria-current");
   });
-  activePanel.scrollTop = 0;
-  const viewport = activePanel.querySelector(".viewport");
-  if (viewport) viewport.scrollTop = 0;
-  requestAnimationFrame(() => updateScrollFade(activePanel));
+
+  const previousPanel = visiblePanel;
+  if (!animate || !previousPanel || previousPanel === activePanel ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    panelAnimation?.cancel();
+    panels.forEach((panel) => { panel.hidden = panel !== activePanel; });
+    visiblePanel = activePanel;
+    activePanel.style.removeProperty("opacity");
+    activePanel.scrollTop = 0;
+    const viewport = activePanel.querySelector(".viewport");
+    if (viewport) viewport.scrollTop = 0;
+    requestAnimationFrame(() => updateScrollFade(activePanel));
+    return;
+  }
+
+  panelAnimation?.cancel();
+  panelAnimation = previousPanel.animate(
+    [{ opacity: 1 }, { opacity: 0 }],
+    { duration: 180, easing: "ease-in-out" }
+  );
+  panelAnimation.onfinish = () => {
+    if (change !== panelChange) return;
+    previousPanel.hidden = true;
+    previousPanel.style.removeProperty("opacity");
+    activePanel.hidden = false;
+    activePanel.style.opacity = "0";
+    visiblePanel = activePanel;
+    activePanel.scrollTop = 0;
+    const viewport = activePanel.querySelector(".viewport");
+    if (viewport) viewport.scrollTop = 0;
+    requestAnimationFrame(() => {
+      if (change !== panelChange) return;
+      panelAnimation = activePanel.animate(
+        [{ opacity: 0 }, { opacity: 1 }],
+        { duration: 180, easing: "ease-in-out" }
+      );
+      panelAnimation.onfinish = () => {
+        if (change !== panelChange) return;
+        activePanel.style.removeProperty("opacity");
+        panelAnimation = undefined;
+        updateScrollFade(activePanel);
+      };
+    });
+  };
 }
 
-function showPanelFromLocation() {
-  showPanel(decodeURIComponent(window.location.hash.slice(1)) || panels[0]?.id);
+function showPanelFromLocation(animate = false) {
+  showPanel(decodeURIComponent(window.location.hash.slice(1)) || panels[0]?.id, animate);
 }
 
 panelLinks.forEach((link) => {
@@ -80,7 +121,7 @@ panelLinks.forEach((link) => {
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     if (window.location.hash !== link.hash) history.pushState(null, "", link.hash);
-    showPanel(link.hash.slice(1));
+    showPanel(link.hash.slice(1), true);
     nav?.classList.remove("is-open");
     navToggle?.setAttribute("aria-expanded", "false");
   });
@@ -98,7 +139,7 @@ navToggle?.addEventListener("click", () => {
   navToggle.setAttribute("aria-expanded", String(isOpen));
 });
 
-window.addEventListener("popstate", showPanelFromLocation);
-window.addEventListener("hashchange", showPanelFromLocation);
+window.addEventListener("popstate", () => showPanelFromLocation(true));
+window.addEventListener("hashchange", () => showPanelFromLocation(true));
 showPanelFromLocation();
 document.documentElement.classList.remove("panels-pending");
