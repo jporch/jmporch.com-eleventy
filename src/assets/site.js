@@ -86,6 +86,13 @@ panelLinks.forEach((link) => {
   });
 });
 
+document.querySelectorAll("[data-panel-item]").forEach((item) => {
+  item.addEventListener("click", (event) => {
+    if (event.target.closest("a")) return;
+    item.querySelector("[data-panel-link]")?.click();
+  });
+});
+
 navToggle?.addEventListener("click", () => {
   const isOpen = nav?.classList.toggle("is-open") ?? false;
   navToggle.setAttribute("aria-expanded", String(isOpen));

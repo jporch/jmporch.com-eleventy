@@ -14,7 +14,7 @@ permalink: index.html
     <nav class="sidebar-nav" id="sidebar-nav" aria-label="Main navigation">
       <ul class="sidebar-element sidebar-buttons">
         {% for section in collections.sections %}
-          {% if section.data.nav %}<li><a data-panel-link href="#{{ section.data.id }}"{% if loop.first %} aria-current="page"{% endif %}>{{ section.data.title }}</a></li>{% endif %}
+          {% if section.data.nav %}<li data-panel-item><a data-panel-link href="#{{ section.data.id }}"{% if loop.first %} aria-current="page"{% endif %}>{{ section.data.title }}</a></li>{% endif %}
         {% endfor %}
       </ul>
       <hr class="sidebar-hr">
