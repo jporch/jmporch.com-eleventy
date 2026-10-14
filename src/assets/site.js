@@ -4,43 +4,13 @@ const nav = document.querySelector("#sidebar-nav");
 const navToggle = document.querySelector(".nav-toggle");
 document.documentElement.classList.add("js-enabled");
 
-let collapseIndex = 0;
-panels.forEach((panel) => {
-  const headings = [...panel.querySelectorAll(".viewport > h2.minor-heading")];
-  headings.forEach((heading) => {
-    const bodyNodes = [];
-    let sibling = heading.nextElementSibling;
-    while (sibling && sibling.tagName !== "H2") {
-      bodyNodes.push(sibling);
-      sibling = sibling.nextElementSibling;
-    }
-
-    const collapse = document.createElement("div");
-    collapse.className = "collapse";
-    const body = document.createElement("div");
-    body.className = "collapse-body";
-    body.id = `collapse-body-${++collapseIndex}`;
-    const button = document.createElement("button");
-    button.className = "collapse-toggle";
-    button.type = "button";
-    button.setAttribute("aria-expanded", "true");
-    button.setAttribute("aria-controls", body.id);
-    const icon = document.createElement("span");
-    icon.className = "collapse-icon";
-    icon.setAttribute("aria-hidden", "true");
-
-    heading.classList.add("collapse-heading");
-    heading.before(collapse);
-    collapse.append(heading, body);
-    button.append(icon, ...heading.childNodes);
-    heading.append(button);
-    body.append(...bodyNodes);
-
-    button.addEventListener("click", () => {
-      const expanded = button.getAttribute("aria-expanded") === "true";
-      button.setAttribute("aria-expanded", String(!expanded));
-      body.hidden = expanded;
-    });
+document.querySelectorAll(".collapse").forEach((collapse) => {
+  const button = collapse.querySelector(".collapse-toggle");
+  const body = collapse.querySelector(".collapse-body");
+  button?.addEventListener("click", () => {
+    const expanded = button.getAttribute("aria-expanded") === "true";
+    button.setAttribute("aria-expanded", String(!expanded));
+    body.hidden = expanded;
   });
 });
 
