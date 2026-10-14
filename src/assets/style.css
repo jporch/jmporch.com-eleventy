@@ -277,22 +277,24 @@ a:visited {
     --mobile-navbar-height: 3.5rem;
   }
   .js-enabled .sidebar-nav {
-    display: block;
-    max-height: 0;
-    overflow: hidden;
-    visibility: hidden;
-    transition: max-height .5s ease, visibility 0s linear .5s;
-  }
-  .js-enabled .sidebar-nav.is-open {
     position: fixed;
     top: var(--mobile-navbar-height);
     right: 0;
     bottom: 0;
     left: 0;
     z-index: 20;
+    display: block;
+    box-sizing: border-box;
+    max-height: 0;
+    overflow: hidden;
+    background-color: #f8f8f8;
+    border-top: 2px solid #e6e6e6;
+    visibility: hidden;
+    transition: max-height .5s ease, visibility 0s linear .5s;
+  }
+  .js-enabled .sidebar-nav.is-open {
     max-height: calc(100vh - var(--mobile-navbar-height));
     overflow-y: auto;
-    background-color: #f8f8f8;
     border-bottom: 2px solid #e6e6e6;
     visibility: visible;
     transition: max-height .5s ease, visibility 0s;
