@@ -114,6 +114,28 @@ a:visited {
   height: 15px;
   width: 15px;
 }
+.collapse-toggle {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.collapse-icon {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: .25em;
+  line-height: 15px;
+  text-align: center;
+}
+.collapse-icon::before { content: "−"; }
+.collapse-toggle[aria-expanded="false"] .collapse-icon::before { content: "+"; }
 .minus-icon {
   background-image: url(content/minus_icon.png);
 }
