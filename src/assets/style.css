@@ -178,6 +178,9 @@ a:visited {
 .viewport {
   padding: 0 .5em;
 }
+.content-panel#portfolio ul {
+  list-style: none;
+}
 
 .viewport>p {
   margin-top: 0;
